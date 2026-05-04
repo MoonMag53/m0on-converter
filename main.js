@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs');
 const { spawn } = require('child_process');
 
 function createWindow() {
@@ -37,20 +38,31 @@ ipcMain.handle('open-file-dialog', async () => {
 
 ipcMain.handle('run-conversion', async (event, xmlPath) => {
   return new Promise((resolve, reject) => {
-    const pythonProcess = spawn('python', ['converter.py', xmlPath]);
-
-    let output = '';
-    let errOutput = '';
-
-    pythonProcess.stdout.on('data', (data) => { output += data.toString(); });
-    pythonProcess.stderr.on('data', (data) => { errOutput += data.toString(); });
-
-    pythonProcess.on('close', (code) => {
-      if (code === 0) {
-        resolve(output.trim());
-      } else {
-        reject(errOutput.trim() || `Process exited with code ${code}`);
+    const converterPath = path.join(__dirname, 'converter.py');
+    const tempConverterPath = path.join(app.getPath('temp'), 'converter.py');
+    
+    fs.copyFile(converterPath, tempConverterPath, (err) => {
+      if (err) {
+        return;
       }
+      
+      const pythonProcess = spawn('python', [tempConverterPath, xmlPath]);
+
+      let output = '';
+      let errOutput = '';
+
+      pythonProcess.stdout.on('data', (data) => { output += data.toString(); });
+      pythonProcess.stderr.on('data', (data) => { errOutput += data.toString(); });
+
+      pythonProcess.on('close', (code) => {
+        fs.unlink(tempConverterPath, () => {});
+        
+        if (code === 0) {
+          resolve(output.trim());
+        } else {
+          reject(errOutput.trim() || `Process exited with code ${code}`);
+        }
+      });
     });
   });
 });

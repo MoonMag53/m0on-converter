@@ -17,6 +17,9 @@
       "!node_modules/**/*",
       "!dist/**/*"
     ],
+    "asarUnpack": [
+      "converter.py"
+    ],
     "win": {
       "target": "nsis",
       "icon": "m0on_industries.png"
