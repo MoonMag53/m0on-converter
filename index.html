@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>M0ON INDUSTRIES - Конвертер команд</title>
+</head>
+<body>
+
+<div class="window-controls">
+    <div class="window-btn minimize" id="minimize-btn">
+        <span class="btn-icon">−</span>
+    </div>
+    <div class="window-btn close" id="close-btn">
+        <span class="btn-icon">×</span>
+    </div>
+</div>
+
+<div class="boot-screen" id="boot-screen">
+    <div class="boot-scan-line"></div>
+
+    <div class="boot-reactor">
+        <div class="reactor-ring r1"></div>
+        <div class="reactor-ring r2"></div>
+        <div class="reactor-ring r3"></div>
+        <div class="reactor-core">
+            <div class="reactor-inner"></div>
+        </div>
+    </div>
+
+    <div class="boot-logo-wrap">
+        <div class="boot-logo" id="boot-logo">M0ON</div>
+        <div class="boot-logo-sub" id="boot-sub">INDUSTRIES</div>
+    </div>
+
+    <div class="boot-progress-wrap">
+        <div class="boot-progress-bar" id="boot-bar"></div>
+    </div>
+    <div class="boot-status" id="boot-status">ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ...</div>
+
+    <div class="boot-corner tl"></div>
+    <div class="boot-corner tr"></div>
+    <div class="boot-corner bl"></div>
+    <div class="boot-corner br"></div>
+</div>
+
+<div class="main-ui" id="main-ui" style="opacity:0;pointer-events:none;">
+
+    <div class="bg-layer bg-glow"></div>
+    <div class="bg-layer bg-grid"></div>
+    <div class="bg-layer bg-scanlines"></div>
+
+    <div class="side-deco left">
+        <div class="deco-dot"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-dot"></div>
+    </div>
+    <div class="side-deco right">
+        <div class="deco-dot"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-dot"></div>
+    </div>
+
+    <div class="hud-container">
+
+        <header>
+            <div class="logo-block">
+                <div class="logo-main">M0ON INDUSTRIES</div>
+                <div class="logo-sub">КОНВЕРТЕР КОМАНД</div>
+            </div>
+        </header>
+
+        <main>
+            <div class="panel">
+                <div class="p-corner-br"></div>
+                <div class="p-corner-bl"></div>
+
+                <div class="step">
+                    <div class="step-label">ИСХОДНЫЙ ФАЙЛ</div>
+                    <div class="input-row">
+                        <input
+                            type="text"
+                            id="xml-path"
+                            class="hud-input interactive"
+                            placeholder="Выберите XML файл со старыми командами..."
+                            readonly
+                        >
+                        <button class="btn btn-secondary interactive" id="browse-btn">ОБЗОР</button>
+                    </div>
+                </div>
+
+                <div class="status-area">
+                    <div class="status-idle" id="status-msg">
+                        <span class="status-icon">◈</span>
+                        Ожидание выбора файла...
+                    </div>
+                    <div class="progress-bar-wrap" id="progress-wrap" style="display:none">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary interactive" id="init-btn" disabled>
+                    <div class="arc-icon"></div>
+                    ЗАПУСТИТЬ КОНВЕРТАЦИЮ
+                    <div class="arc-icon"></div>
+                </button>
+
+                <div class="result-box" id="result-box" style="display:none">
+                    <div class="result-icon" id="result-icon">✓</div>
+                    <div class="result-text" id="result-text">Конвертация завершена</div>
+                    <div class="result-path" id="result-path"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-txt">Сделал с любовью, m0onmag</div>
+        </footer>
+
+    </div>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>

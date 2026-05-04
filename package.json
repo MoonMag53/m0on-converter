@@ -1,0 +1,35 @@
+{
+  "name": "m0on-converter",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.m0on.converter",
+    "productName": "M0ON Converter",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!dist/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "m0on_industries.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^41.3.0",
+    "electron-builder": "^26.8.1"
+  }
+}
