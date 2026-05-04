@@ -9,7 +9,7 @@ const bootSteps = [
     { pct: 55,  msg: 'КАЛИБРОВКА ДУГОВОЙ РЕАКЦИИ...',        delay: 380 },
     { pct: 74,  msg: 'УСТАНОВКА ЗАЩИЩЁННОГО КАНАЛА...',       delay: 450 },
     { pct: 90,  msg: 'ПРОВЕРКА ПРОТОКОЛОВ КОНВЕРТАЦИИ...',    delay: 340 },
-    { pct: 100, msg: 'M0ON CONVENTER — ГОТОВ.',                     delay: 300 },
+    { pct: 100, msg: 'M0ON CONVERTER — ГОТОВ.',                     delay: 300 },
 ];
 
 async function runBoot() {
